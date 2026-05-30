@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neo-Business | Премиум решения</title>
+  <meta name="description" content="Современные цифровые решения для вашего бизнеса. Дизайн, разработка, стратегия.">
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --primary: #6366f1; /* Indigo */
+      --accent: #a855f7; /* Purple */
+      --text-main: #ffffff;
+      --text-muted: #9ca3af;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Background Glow */
+    .glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(0,0,0,0) 70%);
+      top: -10%;
+      left: -10%;
+      z-index: -1;
+      animation: float 10s infinite ease-in-out;
+    }
+    .glow-2 {
+      top: auto; bottom: -10%; left: auto; right: -10%;
+      background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(0,0,0,0) 70%);
+      animation-delay: 5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, 30px); }
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn {
+      background: var(--text-main);
+      color: var(--bg);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .btn:hover { transform: scale(1.05); }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    h1 span {
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    /* Bento Grid Layout */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 300px);
+      gap: 24px;
+      margin-bottom: 100px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -10px rgba(99,102,241,0.2);
+    }
+    .card h3 { font-size: 1.5rem; margin-bottom: 12px; }
+    .card p { color: var(--text-muted); }
+    
+    /* Grid Spans */
+    .span-2 { grid-column: span 2; }
+    .span-row-2 { grid-row: span 2; }
+
+    /* Specific Card Styles */
+    .card-img {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+      transition: opacity 0.3s;
+      z-index: 0;
+    }
+    .card:hover .card-img { opacity: 0.2; }
+    .card-content { position: relative; z-index: 1; }
+
+    .stat-number { font-size: 3rem; font-weight: 800; color: var(--primary); }
+
+    /* Contact Form */
+    .contact-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 60px;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .form-inline {
+      display: flex;
+      gap: 16px;
+      max-width: 500px;
+      margin: 32px auto 0;
+      flex-wrap: wrap;
+    }
+    input {
+      flex: 1;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.2);
+      color: white;
+      outline: none;
+    }
+    input:focus { border-color: var(--primary); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .span-2, .span-row-2 { grid-column: span 1; grid-row: span 1; }
+      .card { min-height: 250px; }
+      h1 { font-size: 2.5rem; }
+      .form-inline { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow"></div>
+  <div class="glow glow-2"></div>
+
+  <header>
+    <div class="container" style="display:flex;justify-content:space-between;width:100%">
+      <div class="logo">RZ.Studio</div>
+      <a href="#contact" class="btn">Обсудить проект</a>
+    </div>
+  </header>
+
+  <section class="hero container">
+    <h1>Создаем цифровое<br><span>будущее вашего бренда</span></h1>
+    <p class="subtitle">Мы не просто делаем сайты. Мы создаем инструменты продаж с дизайном уровня Apple и скоростью света.</p>
+    <div style="display:flex;gap:16px;justify-content:center">
+      <a href="#contact" class="btn">Начать сейчас</a>
+      <a href="#" style="padding:12px 24px;border:1px solid var(--border);border-radius:50px;color:white;text-decoration:none">Смотреть кейсы</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- BENTO GRID -->
+    <div class="bento-grid">
+      
+      <!-- Large Card: Main Service -->
+      <div class="card span-2">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Analytics" class="card-img">
+        <div class="card-content">
+          <h3>Комплексный маркетинг</h3>
+          <p>SEO, контекстная реклама и аналитика в одном флаконе. Мы приводим клиентов, а не просто трафик.</p>
+        </div>
+      </div>
+
+      <!-- Tall Card: Stats -->
+      <div class="card span-row-2" style="background:linear-gradient(180deg, var(--card-bg), rgba(99,102,241,0.1))">
+        <div class="card-content">
+          <h3>Рост продаж</h3>
+          <div class="stat-number">+145%</div>
+          <p>Средний рост конверсии наших клиентов за первые 3 месяца работы.</p>
+        </div>
+      </div>
+
+      <!-- Small Card: Speed -->
+      <div class="card">
+        <div class="card-content">
+          <h3>⚡ Скорость</h3>
+          <p>Загрузка сайта менее 1.2 сек. Google PageSpeed 95+.</p>
+        </div>
+      </div>
+
+      <!-- Small Card: Design -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80" alt="Design" class="card-img">
+        <div class="card-content">
+          <h3>UI/UX Дизайн</h3>
+          <p>Интерфейсы, в которые влюбляются с первого взгляда.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <section id="contact" class="container">
+    <div class="contact-section">
+      <h2>Готовы масштабироваться?</h2>
+      <p style="color:var(--text-muted);margin-top:12px">Оставьте заявку, и мы пришлем коммерческое предложение через 15 минут.</p>
+      <form class="form-inline" onsubmit="event.preventDefault(); alert('Заявка отправлена!');">
+        <input type="text" placeholder="Ваше имя">
+        <input type="tel" placeholder="+7 (___) ___-__-__">
+        <button type="submit" class="btn">Отправить</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 RZ.Studio. Все права защищены.</p>
+      <p style="margin-top:8px;font-size:0.8rem">Designed by AI & Human</p>
+    </div>
+  </footer>
+
+</body>
+</html>
